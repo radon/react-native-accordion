@@ -7,7 +7,8 @@ import {
   StyleSheet,
   TouchableHighlight,
   View,
-  Text
+  Text,
+  Platform
 } from 'react-native';
 
 var Accordion = React.createClass({
@@ -92,6 +93,7 @@ var Accordion = React.createClass({
   render() {
     return (
       /*jshint ignore:start */
+      const wrapperStyle = (Platform.OS === 'ios') ? {height: this.getTweeningValue('height'), overflow: 'scroll'} : {height: this.getTweeningValue('height')};
       <View
         style={{
           overflow: 'hidden'
@@ -107,9 +109,7 @@ var Accordion = React.createClass({
         </TouchableHighlight>
         <View
           ref="AccordionContentWrapper"
-          style={{
-            height: this.getTweeningValue('height')
-          }}
+          style={wrapperStyle}
         >
           <View ref="AccordionContent">
             {this.props.content}
