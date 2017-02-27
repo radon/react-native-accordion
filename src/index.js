@@ -91,9 +91,9 @@ var Accordion = React.createClass({
   },
 
   render() {
+    const wrapperStyle = (Platform.OS === 'ios') ? {height: this.getTweeningValue('height'), overflow: 'scroll'} : {height: this.getTweeningValue('height')};
     return (
       /*jshint ignore:start */
-      const wrapperStyle = (Platform.OS === 'ios') ? {height: this.getTweeningValue('height'), overflow: 'scroll'} : {height: this.getTweeningValue('height')};
       <View
         style={{
           overflow: 'hidden'
