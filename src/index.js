@@ -91,7 +91,7 @@ var Accordion = React.createClass({
   },
 
   render() {
-    const wrapperStyle = (Platform.OS === 'ios') ? {height: this.getTweeningValue('height'), overflow: 'scroll'} : {height: this.getTweeningValue('height')};
+    const wrapperStyle = (Platform.OS === 'ios') ? {height: this.getTweeningValue('height'), overflow: 'scroll'} : {height: this._getContentHeight()};
     return (
       /*jshint ignore:start */
       <View
@@ -107,14 +107,14 @@ var Accordion = React.createClass({
         >
           {this.props.header}
         </TouchableHighlight>
-        <View
+        {this.state.is_visible <View
           ref="AccordionContentWrapper"
           style={wrapperStyle}
         >
           <View ref="AccordionContent">
             {this.props.content}
           </View>
-        </View>
+        </View>}
       </View>
       /*jshint ignore:end */
     );
