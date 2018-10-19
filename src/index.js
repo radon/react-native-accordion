@@ -107,7 +107,7 @@ var Accordion = React.createClass({
         >
           {this.props.header}
         </TouchableHighlight>
-        {this.state.is_visible <View
+        {this.state.is_visible && <View
           ref="AccordionContentWrapper"
           style={wrapperStyle}
         >
