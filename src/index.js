@@ -1,29 +1,30 @@
 'use strict';
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import createClass from 'create-react-class';
 import tweenState from 'react-tween-state';
 
 import {
   StyleSheet,
   TouchableHighlight,
   View,
-  Text,
-  Platform
+  Text
 } from 'react-native';
 
-var Accordion = React.createClass({
+var Accordion = createClass({
   mixins: [tweenState.Mixin],
 
   propTypes: {
-    activeOpacity: React.PropTypes.number,
-    animationDuration: React.PropTypes.number,
-    content: React.PropTypes.element.isRequired,
-    easing: React.PropTypes.string,
-    expanded: React.PropTypes.bool,
-    header: React.PropTypes.element.isRequired,
-    onPress: React.PropTypes.func,
-    underlayColor: React.PropTypes.string,
-    style: React.PropTypes.object
+    activeOpacity: PropTypes.number,
+    animationDuration: PropTypes.number,
+    content: PropTypes.element.isRequired,
+    easing: PropTypes.string,
+    expanded: PropTypes.bool,
+    header: PropTypes.element.isRequired,
+    onPress: PropTypes.func,
+    underlayColor: PropTypes.string,
+    style: PropTypes.object
   },
 
   getDefaultProps() {
@@ -91,7 +92,6 @@ var Accordion = React.createClass({
   },
 
   render() {
-    const wrapperStyle = (Platform.OS === 'ios') ? {height: this.getTweeningValue('height'), overflow: 'scroll'} : {height: this._getContentHeight()};
     return (
       /*jshint ignore:start */
       <View
@@ -107,14 +107,16 @@ var Accordion = React.createClass({
         >
           {this.props.header}
         </TouchableHighlight>
-        {this.state.is_visible && <View
+        <View
           ref="AccordionContentWrapper"
-          style={wrapperStyle}
+          style={{
+            height: this.getTweeningValue('height')
+          }}
         >
           <View ref="AccordionContent">
             {this.props.content}
           </View>
-        </View>}
+        </View>
       </View>
       /*jshint ignore:end */
     );
